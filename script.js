@@ -1,13 +1,16 @@
 // GLOBAL VARIABLES 
-console.log("hello")
+
 var score = 0; //Use time left as score
 var timeLeft = 90;
-var question = ["what is the capital of california?", "what is the capital of colorado?"];
-var answerChoices = [["Managua", "Santiago", "Sacramento",], ["Denver", "Managua", "Oakland"]];// made of arrays
-var correctAnswer = ["Sacramento", "Denver"]; // made of strings ( an array of arrays)
+
 var currentQuestion = 0;
 var startButton= document.getElementById("start-btn")
 var timer = document.getElementById("timer")
+var questionTitle = document.getElementById("question")
+var answerElement = document.getElementById("answer-options")
+var correctPrompt = document.getElementById("correct")
+var incorrectPrompt = document.getElementById("incorrect")
+var flash 
 
 // HTML SELECTORS using query slector ie..
 //var questionEl = document.querySelector("#question")
@@ -70,7 +73,15 @@ function startGame() {
 }
 
 function nextQuestion(event){
-    var question= quizQuestions[currentQuestion]
+    var mainQuestion= quizQuestions[currentQuestion]
+    questionTitle.textContent=mainQuestion.question
+    var answerOptions = mainQuestion.answerChoices
+    console.log("Hello", answerOptions)
+    for (var i=0; i<answerOptions.length;i++){
+        var answerLi=document.createElement("li")
+        answerLi.textContent=answerOptions[i]
+        answerElement.appendChild(answerLi)
+    }
     // user clicking on one of the 4 answers is an event (use event listener?)
     // triggered when user selects any answer
     // firgure out what answer the user chose
@@ -86,8 +97,50 @@ function nextQuestion(event){
     //check answer function 
 
 }
+answerElement.addEventListener("click",function(event){
+event.preventDefault()
+var element = event.target 
+if (element.matches("li")) {
+    checkAnswer(element.textContent)
+}
+})
+function checkAnswer(element){
+var correct=quizQuestions[currentQuestion].correctAnswer
+if (element===correct) {
+    score++, 
+    clearTimeout(flash)
+    correctPrompt.textContent="Correct!"
+    correctPrompt.classList.remove("hide")
+    flash= setTimeout(function(){
+        correctPrompt.classList.add("hide")
+    },1000)
+} else{
+    score --
+    timeLeft -= 10
+    clearTimeout(flash)
+    incorrectPrompt.textContent="Wrong!"
+    incorrectPrompt.classList.remove("hide")
+    flash= setTimeout(function(){
+        incorrectPrompt.classList.add("hide")
+    },1000)
+}
+answerElement.textContent = ""
+currentQuestion++ 
 
-function endGame() {
+if (quizQuestions.length>currentQuestion){
+    nextQuestion()
+    
+
+}else{
+    setTimeout(function(){
+        endGame()
+    },500)
+   
+}
+}
+
+
+function endGame() { console.log("endGame")
     // when timer hits ZERO or user answer all te questions then game ends
     // display : "congrats you scored ___"
     // Prompts user to enter initials to go with their score
@@ -97,6 +150,12 @@ function endGame() {
 }
 
 function saveInitials(){
+
+    var initials = initialsInput.value.trim()//html element
+    var storageScores= JSON.parse(localStorage.getItem("storageScores"))|| []
+    var userScore= {initials:initials, score:score}
+    storageScores.push(userScore) 
+    localStorage.setItem("storageScores",JSON.stringify(storageScores))
     // triggered when user submits initials
     // SAVE  SCORE AND INITIALS TO LOCAL STORAGE-- 
         // want to keep data we have and add new score
