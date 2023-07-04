@@ -16,34 +16,34 @@ var flash
 //var questionEl = document.querySelector("#question")
 
 var quizQuestions=[
-    {question: "What html element makes a button?",
-     answerChoices: ["<button>","<>button<>","buttOn","BUTTON!"],
-     correctAnswer: "<button>"
+    {question: "What is my cats favorite food?",
+     answerChoices: ["Tuna","Anchovies","Salmon","Bacon"],
+     correctAnswer: "Salmon"
 },
 {
-    question: "Question",
-    answerChoices: [""],
-    correctAnswer: "",
+    question: "What is my cats favorite activity?",
+    answerChoices: ["Sun Bathing","Catching Flies","Running!","Sleeping"],
+    correctAnswer: "Sun Bathing"
 },
 {
-    question: "Question",
-    answerChoices: [""],
-    correctAnswer: "",
+    question: "Where is my cat from?",
+    answerChoices: ["Jupiter","Catifornia","Petco","East Oakland"],
+    correctAnswer: "East Oakland",
 },
 {
-    question: "Question",
-    answerChoices: [""],
-    correctAnswer: "",
+    question: "What color are my cats eyes?",
+    answerChoices: ["Red","Yellow","Green","Brown"],
+    correctAnswer: "Green",
 },
 {
-    question: "Question",
-    answerChoices: [""],
-    correctAnswer: "",
+    question: "How many naps does my cat take a day?",
+    answerChoices: ["1","5","25","100"],
+    correctAnswer: "100",
 },
 {
-    question: "Question",
-    answerChoices: [""],
-    correctAnswer: "",
+    question: "What were my cats first words?",
+    answerChoices: ["Meow","Ekekek","Hello!","Moo"],
+    correctAnswer: "Meow",
 }
 ];
 
