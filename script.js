@@ -1,17 +1,19 @@
 // GLOBAL VARIABLES 
 
 var score = 0; //Use time left as score
-var timeLeft = 90;
+var timeLeft = 60;
 
 var currentQuestion = 0;
 var startButton= document.getElementById("start-btn")
 var timer = document.getElementById("timer")
+var questionContainer = document.querySelector("#question-container")
 var questionTitle = document.getElementById("question")
 var answerElement = document.getElementById("answer-options")
 var correctPrompt = document.getElementById("correct")
 var incorrectPrompt = document.getElementById("incorrect")
 var flash 
-
+var initialsInput = document.querySelector("#initials")
+var displayHS = document.querySelector("#score-display")
 // HTML SELECTORS using query slector ie..
 //var questionEl = document.querySelector("#question")
 
@@ -56,7 +58,7 @@ timerInterval= setInterval(function(){
     timer.textContent = timeLeft
     if (timeLeft<=0){
         clearInterval(timerInterval)
-        //endGame()
+        endGame()
     }
 },1000)
 }
@@ -141,6 +143,9 @@ if (quizQuestions.length>currentQuestion){
 
 
 function endGame() { console.log("endGame")
+clearInterval(timerInterval)
+questionContainer.classList.add("hide")
+
     // when timer hits ZERO or user answer all te questions then game ends
     // display : "congrats you scored ___"
     // Prompts user to enter initials to go with their score
@@ -150,12 +155,13 @@ function endGame() { console.log("endGame")
 }
 
 function saveInitials(){
-
+//I am lost on this part of code a bit, previous tutor helped me write it but need more explanation
     var initials = initialsInput.value.trim()//html element
     var storageScores= JSON.parse(localStorage.getItem("storageScores"))|| []
-    var userScore= {initials:initials, score:score}
+    var userScore= {initials:initials, score:timeLeft}
     storageScores.push(userScore) 
     localStorage.setItem("storageScores",JSON.stringify(storageScores))
+    window.location.reload()
     // triggered when user submits initials
     // SAVE  SCORE AND INITIALS TO LOCAL STORAGE-- 
         // want to keep data we have and add new score
@@ -167,6 +173,18 @@ function saveInitials(){
     // takes user to HighScore page (separate html file ie. highScore.html)
 
 }
+function displayHighScores(){
+    var storageScores= JSON.parse(localStorage.getItem("storageScores"))|| []
+    for (var i=0; i < storageScores.length; i++){
+        var score = document.createElement("p")
+        score.innerText= storageScores[i].initials+" "+storageScores[i].score
+        displayHS.appendChild(score)
+    }
+
+}
+displayHighScores()
 
 // event listenter to trigger start function
-startButton.addEventListener("click", startGame())
+startButton.addEventListener("click", startGame)
+var submitBtn = document.querySelector("#submit-btn")
+submitBtn.addEventListener("click", saveInitials)
