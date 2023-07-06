@@ -14,6 +14,7 @@ var incorrectPrompt = document.getElementById("incorrect")
 var flash 
 var initialsInput = document.querySelector("#initials")
 var displayHS = document.querySelector("#score-display")
+
 // HTML SELECTORS using query slector ie..
 //var questionEl = document.querySelector("#question")
 
@@ -50,6 +51,8 @@ var quizQuestions=[
 ];
 
 
+
+
 var timerInterval
 // FUNCTIONS THAT WE NEED
 function startTimer(){
@@ -61,6 +64,7 @@ timerInterval= setInterval(function(){
         endGame()
     }
 },1000)
+
 }
 function startGame() {
     startTimer()
@@ -146,6 +150,7 @@ function endGame() { console.log("endGame")
 clearInterval(timerInterval)
 questionContainer.classList.add("hide")
 
+
     // when timer hits ZERO or user answer all te questions then game ends
     // display : "congrats you scored ___"
     // Prompts user to enter initials to go with their score
@@ -155,7 +160,7 @@ questionContainer.classList.add("hide")
 }
 
 function saveInitials(){
-//I am lost on this part of code a bit, previous tutor helped me write it but need more explanation
+
     var initials = initialsInput.value.trim()//html element
     var storageScores= JSON.parse(localStorage.getItem("storageScores"))|| []
     var userScore= {initials:initials, score:timeLeft}

@@ -57,3 +57,23 @@ li{
 
 
 }
+
+#submit-card{
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#score-display{
+    text-align: center;
+    border: 5px dashed green;
+    margin: auto;
+    width: 20%;
+    padding: 10px;
+    margin-top: 1%;
+}
+
+#score-display p {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    margin-bottom: 5px;}
