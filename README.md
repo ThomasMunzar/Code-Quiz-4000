@@ -11,7 +11,7 @@
 
 ## Description
 
-[Visit the Deployed Site!](link!!!!!*************************)
+[Visit the Deployed Site!](https://thomasmunzar.github.io/Code-Quiz-4000/)
 
 The goal of this project was to create a quiz that ran smoothly for a user. As simple as it looks and as silly as the questions are, the mechanic behind this program were tricky. Styling the quiz page was the fun part since it is so simple but using JavaScript to make the page interactive was tough for me.  The goal was to make a simple quiz, I did not worry too much about the question at hand (although I think thats not great for the user since only I know the questions answers about my cat). I focused all my time on JavaScript and its functionality. I started creating variable based on items I had in my HTML document so that i could manipulate and use those elements as i needed. then i created a timer that counts from 75 down to 0 when the user clicks "start quiz".  This took me quite some time to figure out how to write but i eventually got it. i then created functions to start the game, move to the next question and end the game.
 
