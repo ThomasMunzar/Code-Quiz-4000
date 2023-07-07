@@ -1,7 +1,7 @@
 // GLOBAL VARIABLES 
 
 var score = 0; //Use time left as score
-var timeLeft = 60;
+var timeLeft = 75;
 
 var currentQuestion = 0;
 var startButton= document.getElementById("start-btn")
@@ -12,7 +12,7 @@ var answerElement = document.getElementById("answer-options")
 var correctPrompt = document.getElementById("correct")
 var incorrectPrompt = document.getElementById("incorrect")
 var flash 
-var initialsInput = document.querySelector("#initials")
+var initialsInput = document.querySelector("#submit-card")
 var displayHS = document.querySelector("#score-display")
 
 // HTML SELECTORS using query slector ie..
@@ -69,6 +69,7 @@ timerInterval= setInterval(function(){
 function startGame() {
     startTimer()
     nextQuestion()
+    
     // function that will start game/ triggered when they press START button (need event listener)
     // starts the timer: 
         // Set Interval 
@@ -149,7 +150,8 @@ if (quizQuestions.length>currentQuestion){
 function endGame() { console.log("endGame")
 clearInterval(timerInterval)
 questionContainer.classList.add("hide")
-
+displayHS.classList.remove('hide')
+initialsInput.classList.remove('hide')
 
     // when timer hits ZERO or user answer all te questions then game ends
     // display : "congrats you scored ___"
@@ -161,7 +163,7 @@ questionContainer.classList.add("hide")
 
 function saveInitials(){
 
-    var initials = initialsInput.value.trim()//html element
+    var initials = initialsInput.value.trim();//html element
     var storageScores= JSON.parse(localStorage.getItem("storageScores"))|| []
     var userScore= {initials:initials, score:timeLeft}
     storageScores.push(userScore) 
@@ -184,6 +186,8 @@ function displayHighScores(){
         var score = document.createElement("p")
         score.innerText= storageScores[i].initials+" "+storageScores[i].score
         displayHS.appendChild(score)
+        
+        
     }
 
 }
