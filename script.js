@@ -12,8 +12,9 @@ var answerElement = document.getElementById("answer-options")
 var correctPrompt = document.getElementById("correct")
 var incorrectPrompt = document.getElementById("incorrect")
 var flash 
-var initialsInput = document.querySelector("#submit-card")
+var initialsInput = document.querySelector("#initials")
 var displayHS = document.querySelector("#score-display")
+var hideInitials = document.querySelector("#submit-card")
 
 // HTML SELECTORS using query slector ie..
 //var questionEl = document.querySelector("#question")
@@ -151,7 +152,7 @@ function endGame() { console.log("endGame")
 clearInterval(timerInterval)
 questionContainer.classList.add("hide")
 displayHS.classList.remove('hide')
-initialsInput.classList.remove('hide')
+hideInitials.classList.remove('hide')
 
     // when timer hits ZERO or user answer all te questions then game ends
     // display : "congrats you scored ___"
@@ -168,7 +169,9 @@ function saveInitials(){
     var userScore= {initials:initials, score:timeLeft}
     storageScores.push(userScore) 
     localStorage.setItem("storageScores",JSON.stringify(storageScores))
-    window.location.reload()
+    initialsInput.value =''
+    displayHighScores()
+    //window.location.reload()
     // triggered when user submits initials
     // SAVE  SCORE AND INITIALS TO LOCAL STORAGE-- 
         // want to keep data we have and add new score
@@ -176,7 +179,7 @@ function saveInitials(){
         // 2. add new score at end of array
         // 3. now overwrite the scores with the new array
 
-
+       
     // takes user to HighScore page (separate html file ie. highScore.html)
 
 }
@@ -191,7 +194,7 @@ function displayHighScores(){
     }
 
 }
-displayHighScores()
+
 
 // event listenter to trigger start function
 startButton.addEventListener("click", startGame)
