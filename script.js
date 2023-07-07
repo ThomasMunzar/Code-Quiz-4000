@@ -15,7 +15,7 @@ var flash
 var initialsInput = document.querySelector("#initials")
 var displayHS = document.querySelector("#score-display")
 var hideInitials = document.querySelector("#submit-card")
-
+var restartContainer = document.querySelector("#restart-container")
 // HTML SELECTORS using query slector ie..
 //var questionEl = document.querySelector("#question")
 
@@ -153,6 +153,8 @@ clearInterval(timerInterval)
 questionContainer.classList.add("hide")
 displayHS.classList.remove('hide')
 hideInitials.classList.remove('hide')
+restartContainer.classList.remove('hide')
+
 
     // when timer hits ZERO or user answer all te questions then game ends
     // display : "congrats you scored ___"
@@ -195,8 +197,15 @@ function displayHighScores(){
 
 }
 
+function restartQuiz(){
+    window.location.reload()
+}
+
 
 // event listenter to trigger start function
 startButton.addEventListener("click", startGame)
 var submitBtn = document.querySelector("#submit-btn")
 submitBtn.addEventListener("click", saveInitials)
+
+var restartButton = document.getElementById("restart-btn")
+restartButton.addEventListener('click', restartQuiz)
